@@ -1657,7 +1657,7 @@ class PlayState extends MusicBeatState
 		botPlayState.scrollFactor.set();
 		botPlayState.borderSize = 4;
 		botPlayState.borderQuality = 2;
-        	if(autoplay){
+        	if(autoPlay){
 			add(botPlayState);
 	        }
 
@@ -6960,17 +6960,23 @@ class NotePool extends FlxTypedGroup<Note>
 {
 	override public function recycle(?ObjectClass:Class<Note>, ?ObjectFactory:Void->Note, Force:Bool = false, Revive:Bool = true):Note
 	{
-		var basic:FlxBasic = null;
-		basic = getFirstAvailable(ObjectClass, Force);
+     	var i:Int = 0;
+		var basic:Note = null;
 
-		if (basic != null)
+		while (i < length)
 		{
-			if (Revive)
-				basic.revive();
-			return cast basic;
-		}
+			basic = members[i++];
 
-		return recycleCreateObject(ObjectClass, ObjectFactory);
+			if (basic != null && !basic.exists)
+			{
+				if (members[i - 1].isAvailable && (members[i - 1].onStrumTime == null || (members[i - 1].didSpecialStuff)))
+				{
+					members[i - 1].isAvailable = false;
+					return members[i - 1];
+				}
+			}
+		}
+		return null;
 	}
 
 	override public function getFirstAvailable(?ObjectClass:Class<Note>, Force:Bool = false):Note

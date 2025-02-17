@@ -96,7 +96,7 @@ class Main extends Sprite
 	{
 		super();
 
-		addChild(new FlxGame(0, 0, Startup, 1, 144, 144, true));
+		addChild(new FlxGame(#if mobile 1280, 720 #else 0, 0 #end, #if mobile !mobile.CopyState.checkExistingFiles() ? mobile.CopyState : #end Startup, 60, 60, true));
 
 		openfl.Lib.current.stage.application.onExit.add(function(code)
 		{
