@@ -8,7 +8,7 @@ import cpp.Pointer;
 import cpp.RawPointer;
 
 @:buildXml('../../../../source/tsf/TinySoundfontBuild.xml')
-@:include("tsf.h")
+@:include("../../../../source/tsf/tsf.h")
 @:keep
 @:unreflective
 @:structAccess
@@ -16,7 +16,7 @@ import cpp.RawPointer;
 extern class TSF {}
 
 @:buildXml('../../../../source/tsf/TinySoundfontBuild.xml')
-@:include("tsfstuff.cpp")
+@:include("../../../../source/tsf/tsfstuff.cpp")
 @:keep
 @:unreflective
 @:native("TinySoundFont*")
