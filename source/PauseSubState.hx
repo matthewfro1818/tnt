@@ -19,7 +19,7 @@ class PauseSubState extends MusicBeatSubstate
 	var grpShitTweens:Array<FlxTween> = [];
 	var grpTextTweens:Array<FlxTween> = [];
 
-	var menuItems:Array<String> = ['Resume', 'Restart Song', "Options", 'Exit to menu'];
+	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Auto Play' "Options", 'Exit to menu'];
 	var curSelected:Int = 0;
 
 	// var pauseMusic:FlxSound;
@@ -180,6 +180,9 @@ class PauseSubState extends MusicBeatSubstate
 					@:privateAccess
 					if (_parentState != null && _parentState.subState == this)
 						cast(_parentState, PlayState).endSongStory();
+
+                                case "autoPlay":
+					PlayState.autoPlay = true;
 
 				case "Options":
 					stopInput = true;
