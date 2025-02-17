@@ -106,6 +106,8 @@ class PlayState extends MusicBeatState
 	public static var transIcon:String = "default";
 	public static var transColor:FlxColor = FlxColor.BLACK;
 
+	public static var botPlayState:FlxText;
+
 	public static var autoPlay:Bool = false;
 
 	private var canHit:Bool = false;
@@ -1649,6 +1651,16 @@ class PlayState extends MusicBeatState
 
 		healthBarP2.clipRect = FlxRect.get(0, 0, healthBarP2.width, healthBarP2.height);
 
+		botPlayState = new FlxText(healthBarBG.x + healthBarBG.width + 2 + 75, healthBarBG.y + (100 - -100), 0,
+			"BOTPLAY", 20);
+		botPlayState.setFormat(Paths.font("vcr"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		botPlayState.scrollFactor.set();
+		botPlayState.borderSize = 4;
+		botPlayState.borderQuality = 2;
+        	if(autoplay){
+			add(botPlayState);
+	        }
+
 		scoreTxt = new FlxTextThing(healthBarBG.x + healthBarBG.width / 2 - 400, (FlxG.height * 0.9) + 36, 800, "", 21);
 		scoreTxt.setFormat(Paths.font("vcr"), 21, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
@@ -1684,6 +1696,7 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camScore];
+		botPlayState.cameras = [camHUD];
 		if (Config.comboParticles)
 			coolnessSprite.cameras = [camHUD];
 		// doof.cameras = [camHUD];
