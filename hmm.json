@@ -132,6 +132,16 @@
       "name": "away3d",
       "type": "haxelib",
       "version": null
+    },
+    {
+      "name": "openfl-glsl",
+      "type": "haxelib",
+      "version": null
+    },
+    {
+      "name": "openfl-gpu-particles",
+      "type": "haxelib",
+      "version": null
     }
   ]
 }
