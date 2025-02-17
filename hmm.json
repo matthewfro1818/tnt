@@ -142,6 +142,11 @@
       "name": "openfl-gpu-particles",
       "type": "haxelib",
       "version": null
+    },
+    {
+      "name": "vector-math",
+      "type": "haxelib",
+      "version": null
     }
   ]
 }
