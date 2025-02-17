@@ -7,16 +7,16 @@ import cpp.NativeArray;
 import cpp.Pointer;
 import cpp.RawPointer;
 
-@:buildXml('../../../../source/tsf/TinySoundfontBuild.xml')
-@:include("../../../../source/tsf/tsf.h")
+@:buildXml("TinySoundfontBuild.xml")
+@:include("tsf.h")
 @:keep
 @:unreflective
 @:structAccess
 @:native("tsf")
 extern class TSF {}
 
-@:buildXml('../../../../source/tsf/TinySoundfontBuild.xml')
-@:include("../../../../source/tsf/tsfstuff.cpp")
+@:buildXml("TinySoundfontBuild.xml")
+@:include("tsfstuff.cpp")
 @:keep
 @:unreflective
 @:native("TinySoundFont*")
