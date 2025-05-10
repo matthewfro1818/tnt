@@ -106,8 +106,6 @@ class PlayState extends MusicBeatState
 	public static var transIcon:String = "default";
 	public static var transColor:FlxColor = FlxColor.BLACK;
 
-	public static var botPlayState:FlxText;
-
 	public static var autoPlay:Bool = false;
 
 	private var canHit:Bool = false;
@@ -389,8 +387,20 @@ class PlayState extends MusicBeatState
 
 	public static final useStreamPos:Bool = true;
 
+	//bgggg
+	public static var bgTarget = 0;
+	public static var bgEdit = false;
+
 	override public function create()
 	{
+		if (bgEdit)
+		{
+			if (FlxG.keys.justPressed.UP)
+				bgTarget ++;
+			if (FlxG.keys.justPressed.DOWN)
+				bgTarget --;
+		}
+
 		// instance = this;
 		FlxG.mouse.visible = false;
 		PlayerSettings.gameControls();
@@ -1003,6 +1013,42 @@ class PlayState extends MusicBeatState
 				fore.antialiasing = true;
 				fore.active = false;
 				add(fore);
+			case 'mansion':
+				defaultCamZoom = 0.9;
+				curStage = 'mansion';
+				var bg:FlxSprite = new FlxSprite(-400, -160).loadGraphic(Paths.image('bg_lemon'));
+				bg.setGraphicSize(Std.int(bg.width * 1.5));
+				bg.antialiasing = true;
+				bg.scrollFactor.set(0.95, 0.95);
+				bg.active = false;
+				add(bg);
+			case 'out':
+				defaultCamZoom = 0.8;
+				curStage = 'out';
+
+				var sky:BGElement = new BGElement('OBG/sky', -1204, -456, 0.15, 1, 0);
+				add(sky);
+
+				var clouds:BGElement = new BGElement('OBG/clouds', -988, -260, 0.25, 1, 1);
+				add(clouds);
+
+				var backMount:BGElement = new BGElement('OBG/backmount', -700, -40, 0.4, 1, 2);
+				add(backMount);
+
+				var middleMount:BGElement = new BGElement('OBG/middlemount', -240, 200, 0.6, 1, 3);
+				add(middleMount);
+
+				var ground:BGElement = new BGElement('OBG/ground', -660, 624, 1, 1, 4);
+				add(ground);
+			case 'Space':
+				defaultCamZoom = 0.9;
+				curStage = 'Space';
+				var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('space'));
+				bg.setGraphicSize(Std.int(bg.width * 1));
+				bg.antialiasing = true;
+				bg.scrollFactor.set(0.95, 0.95);
+				bg.active = false;
+				add(bg);
 			case 'atlantaStage':
 				curStage = 'atlantaStage';
 
@@ -1651,16 +1697,6 @@ class PlayState extends MusicBeatState
 
 		healthBarP2.clipRect = FlxRect.get(0, 0, healthBarP2.width, healthBarP2.height);
 
-		botPlayState = new FlxText(healthBarBG.x + healthBarBG.width + 2 + 75, healthBarBG.y + (100 - -100), 0,
-			"BOTPLAY", 20);
-		botPlayState.setFormat(Paths.font("vcr"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		botPlayState.scrollFactor.set();
-		botPlayState.borderSize = 4;
-		botPlayState.borderQuality = 2;
-        	if(autoPlay){
-			add(botPlayState);
-	        }
-
 		scoreTxt = new FlxTextThing(healthBarBG.x + healthBarBG.width / 2 - 400, (FlxG.height * 0.9) + 36, 800, "", 21);
 		scoreTxt.setFormat(Paths.font("vcr"), 21, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
@@ -1696,7 +1732,6 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camScore];
-		botPlayState.cameras = [camHUD];
 		if (Config.comboParticles)
 			coolnessSprite.cameras = [camHUD];
 		// doof.cameras = [camHUD];
@@ -6960,23 +6995,8 @@ class NotePool extends FlxTypedGroup<Note>
 {
 	override public function recycle(?ObjectClass:Class<Note>, ?ObjectFactory:Void->Note, Force:Bool = false, Revive:Bool = true):Note
 	{
-     	var i:Int = 0;
-		var basic:Note = null;
-
-		while (i < length)
-		{
-			basic = members[i++];
-
-			if (basic != null && !basic.exists)
-			{
-				if (members[i - 1].isAvailable && (members[i - 1].onStrumTime == null || (members[i - 1].didSpecialStuff)))
-				{
-					members[i - 1].isAvailable = false;
-					return members[i - 1];
-				}
-			}
-		}
-		return null;
+		var basic:FlxBasic = null;
+		basic = getFirstAvailable(ObjectClass, Force);
 	}
 
 	override public function getFirstAvailable(?ObjectClass:Class<Note>, Force:Bool = false):Note
