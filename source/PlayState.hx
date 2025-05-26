@@ -1329,6 +1329,8 @@ class PlayState extends MusicBeatState
 			gfVersion = 'nothing';
 		else if (SONG.player1 == 'bf' || SONG.player2 == 'bf')
 			gfVersion = 'gf';
+		else if (SONG.player1 == 'eevee' || SONG.player2 == 'eevee')
+			gfVersion = 'pikachu';
 		else
 			gfVersion = 'nogf';
 
