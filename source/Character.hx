@@ -272,15 +272,12 @@ class Character extends FlxNestedSkewSprite
 				animation.addByPrefix('danceLeft', 'Pika idleleft');
 				animation.addByPrefix('danceRight', 'Pika idleright');
 
-				addOffset('cheer', -200, -449);
-				addOffset('sad', -2, -18 + yOffet);
-				addOffset('danceLeft', 0, -4 + yOffet);
-				addOffset('danceRight', 0, 0 + yOffet);
-				addOffset("singUP", 0, -11 + yOffet);
-				addOffset("singRIGHT", 0, -5 + yOffet);
-				addOffset("singLEFT", 0, -3 + yOffet);
-				addOffset("singDOWN", 0, -31 + yOffet);
-				addOffset('scared', -2, -17 + yOffet);
+				addOffset('danceLeft', 0, -9);
+				addOffset('danceRight', 0, -9);
+				addOffset("singUP", -70, -16);
+				addOffset("singRIGHT", -70, 0);
+				addOffset("singLEFT", -80, -9);
+				addOffset("singDOWN", -47, -18);
 
 				playAnim('danceRight');
 
@@ -434,21 +431,13 @@ class Character extends FlxNestedSkewSprite
 				animation.addByPrefix('singLEFT', 'BF left0', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF right0', 24, false);
 				animation.addByPrefix('singDOWN', 'BF down0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF upmiss', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF leftmiss', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF rightmiss', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF downmiss', 24, false);
 
 				addOffset('idle', -5);
 				addOffset("singUP", -21, 66);
 				addOffset("singRIGHT", -51, 9);
-				addOffset("singLEFT", -7, 3);
-				addOffset("singDOWN", -26, -41);
-				addOffset("singUPmiss", -21, 65);
-				addOffset("singRIGHTmiss", -42, 18);
-				addOffset("singLEFTmiss", -9, 14);
-				addOffset("singDOWNmiss", -32, -22);
-
+				addOffset("singLEFT", 2, -7);
+				addOffset("singDOWN", 10, -11);
+				
 				playAnim('idle');
 
 			case 'senpai':
