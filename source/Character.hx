@@ -264,7 +264,7 @@ class Character extends FlxNestedSkewSprite
 			case 'pikachu':
 				// GIRLFRIEND CODE
 
-				frames = Paths.getSparrowAtlasFunk("characters/Pikafriend_Singer");
+				frames = Paths.getSparrowAtlasFunk("characters/Pikafriend");
 				animation.addByPrefix('singLEFT', 'Pika left');
 				animation.addByPrefix('singRIGHT', 'Pika right');
 				animation.addByPrefix('singUP', 'Pika up');
@@ -280,10 +280,6 @@ class Character extends FlxNestedSkewSprite
 				addOffset("singDOWN", -47, -18);
 
 				playAnim('danceRight');
-
-				speaker.frames = Paths.getSparrowAtlasFunk("characters/Pikafriend_Speaker");
-				speaker.animation.addByPrefix('idle', 'Pika idle', 24, false);
-				speaker.animation.play("idle");
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
 				createAtlas();
