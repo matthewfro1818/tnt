@@ -26,6 +26,7 @@ class Character extends FlxNestedSkewSprite
 	public var curCharacter:String = 'bf';
 
 	public var holdTimer:Float = 0;
+	public var speaker:FlxSprite;
 
 	public var canAutoAnim:Bool = true;
 	public var canAutoIdle:Bool = true;
@@ -260,6 +261,32 @@ class Character extends FlxNestedSkewSprite
 
 				playAnim('danceRight');
 
+			case 'pikachu':
+				// GIRLFRIEND CODE
+
+				frames = Paths.getSparrowAtlasFunk("characters/Pikafriend_Singer");
+				animation.addByPrefix('singLEFT', 'Pika left');
+				animation.addByPrefix('singRIGHT', 'Pika right');
+				animation.addByPrefix('singUP', 'Pika up');
+				animation.addByPrefix('singDOWN', 'Pika down');
+				animation.addByPrefix('danceLeft', 'Pika idleleft');
+				animation.addByPrefix('danceRight', 'Pika idleright');
+
+				addOffset('cheer', -200, -449);
+				addOffset('sad', -2, -18 + yOffet);
+				addOffset('danceLeft', 0, -4 + yOffet);
+				addOffset('danceRight', 0, 0 + yOffet);
+				addOffset("singUP", 0, -11 + yOffet);
+				addOffset("singRIGHT", 0, -5 + yOffet);
+				addOffset("singLEFT", 0, -3 + yOffet);
+				addOffset("singDOWN", 0, -31 + yOffet);
+				addOffset('scared', -2, -17 + yOffet);
+
+				playAnim('danceRight');
+
+				speaker.frames = Paths.getSparrowAtlasFunk("characters/Pikafriend_Speaker");
+				speaker.animation.addByPrefix('idle', 'Pika idle', 24, false);
+				speaker.animation.play("idle");
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
 				createAtlas();
@@ -398,6 +425,31 @@ class Character extends FlxNestedSkewSprite
 				playAnim('idle');
 
 				initFacing = FlxObject.LEFT;
+
+			case 'eevee':
+				antialiasing = false;
+				frames = Paths.getSparrowAtlasFunk("characters/Playable_Eevee");
+				animation.addByPrefix('idle', 'BF idle', 24, false);
+				animation.addByPrefix('singUP', 'BF up0', 24, false);
+				animation.addByPrefix('singLEFT', 'BF left0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF right0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF down0', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF upmiss', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF leftmiss', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF rightmiss', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF downmiss', 24, false);
+
+				addOffset('idle', -5);
+				addOffset("singUP", -21, 66);
+				addOffset("singRIGHT", -51, 9);
+				addOffset("singLEFT", -7, 3);
+				addOffset("singDOWN", -26, -41);
+				addOffset("singUPmiss", -21, 65);
+				addOffset("singRIGHTmiss", -42, 18);
+				addOffset("singLEFTmiss", -9, 14);
+				addOffset("singDOWNmiss", -32, -22);
+
+				playAnim('idle');
 
 			case 'senpai':
 				antialiasing = false;
